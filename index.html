@@ -6,76 +6,180 @@
     <meta name="description" content="Free QR Code Generator - Create QR codes for URLs, social media, WiFi, and more with custom logos and text">
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/simpleicons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="py-8 px-4 flex-grow">
+    
     <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-8 relative">
-            
+
+        <header class="text-center mb-8 relative">
             <div class="absolute top-0 left-0 h-12 flex items-center">
                 <a href="/" title="Trang chủ">
                     <img src="https://i.ibb.co/fYvycxzt/logophuondev.png" alt="Logo" class="h-10 w-auto">
                 </a>
-                
-                </div>
+            </div>
 
             <div class="absolute top-0 right-0 flex items-center gap-3">
-                <button onclick="toggleLanguage()" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-gray-800 card-bg border-2 border-gray-200 hover:border-indigo-500 transition-all shadow-sm">
-                    <span class="text-lg">🌐</span>
-                    <span id="langText" class="text-sm font-medium text-gray-700 dark:text-gray-300">VI</span>
+                <button onclick="toggleLanguage()" class="control-btn">
+                    <i class="fas fa-globe"></i>
+                    <span id="langText" class="text-sm font-medium">VI</span>
                 </button>
-                
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-white dark:bg-gray-800 card-bg border-2 border-gray-200 hover:border-indigo-500 transition-all shadow-sm">
-                    <span id="darkModeIcon" class="text-xl">🌙</span>
+                <button onclick="toggleDarkMode()" class="control-btn">
+                    <span id="darkModeIcon" class="text-lg">🌙</span>
                 </button>
             </div>
             
-            <h1 class="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3 pt-12 md:pt-0">Trình Tạo QR Code By PhuongDev</h1>
+            <h1 class="text-5xl font-bold main-title mb-3 pt-12 md:pt-0">Trình Tạo QR Code By PhuongDev</h1>
             <p class="text-gray-600 dark:text-gray-400" data-i18n="subtitle"></p>
-            <a href="https://github.com/PhuongDeveloper/qrcode" target="_blank" class="inline-flex items-center gap-2 mt-3 text-sm text-gray-500 hover:text-indigo-600 transition">
+            <a href="https://github.com/PhuongDeveloper/qrcode" target="_blank" class="github-link">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                Được phát triển bởi PhuongDev
+                <span>Được phát triển bởi PhuongDev</span>
             </a>
-        </div>
+        </header>
 
-        <div class="bg-white dark:bg-gray-800 card-bg rounded-2xl shadow-xl border border-gray-100 p-8">
-            <div class="flex border-b border-gray-200 dark:border-gray-700 mb-8 overflow-x-auto">
-                <div id="tab1" class="tab active" onclick="goToStep(1)">
-                    <span class="text-2xl mr-2">📱</span>
-                    <span data-i18n="step1_title"></span>
+        <div class="main-card">
+            
+            <div class="flex items-center justify-between mb-8 px-2">
+                <div id="tab1" class="step active" onclick="goToStep(1)">
+                    <div class="step-circle">1</div>
+                    <div class="step-label" data-i18n="step1_title"></div>
                 </div>
-                <div id="tab2" class="tab opacity-50" onclick="goToStep(2)" style="pointer-events: none;">
-                    <span class="text-2xl mr-2">🎨</span>
-                    <span data-i18n="step2_title"></span>
+                <div class="step-line"></div>
+                <div id="tab2" class="step" onclick="goToStep(2)">
+                    <div class="step-circle">2</div>
+                    <div class="step-label" data-i18n="step2_title"></div>
                 </div>
-                <div id="tab3" class="tab opacity-50" onclick="goToStep(3)" style="pointer-events: none;">
-                    <span class="text-2xl mr-2">⚙️</span>
-                    <span data-i18n="step3_title"></span>
+                <div class="step-line"></div>
+                <div id="tab3" class="step" onclick="goToStep(3)">
+                    <div class="step-circle">3</div>
+                    <div class="step-label" data-i18n="step3_title"></div>
                 </div>
             </div>
 
-            <div id="step1">
+            <div class="px-2">
+                <div id="step1">
+                    <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white" data-i18n="select_data_type"></h2>
+                    <div id="dataTypesGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                        </div>
+                    
+                    <div id="inputFields" class="space-y-5">
+                        </div>
+                    
+                    <div id="campaignSection" class="mt-6 hidden">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 dark:text-white" data-i18n="advanced_settings"></h3>
+                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" id="enableCampaign" class="form-checkbox">
+                                <span class="text-gray-700 dark:text-gray-200" data-i18n="campaign_desc"></span>
+                            </label>
+                            <div id="campaignFields" class="hidden mt-4 space-y-3">
+                                <input type="text" id="utmSource" placeholder="utm_source" class="form-input">
+                                <input type="text" id="utmMedium" placeholder="utm_medium" class="form-input">
+                                <input type="text" id="utmCampaign" placeholder="utm_campaign" class="form-input">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-            <div id="step2" class="hidden">
+                <div id="step2" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white" data-i18n="qr_colors"></h3>
+                            <div class="space-y-4">
+                                <div class="color-option">
+                                    <label for="qrColorDark" data-i18n="qr_color" class="text-sm font-medium text-gray-700 dark:text-gray-300"></label>
+                                    <input type="color" id="qrColorDark" value="#000000" class="form-color">
+                                </div>
+                                <div class="color-option">
+                                    <label for="qrColorLight" data-i18n="bg_color" class="text-sm font-medium text-gray-700 dark:text-gray-300"></label>
+                                    <input type="color" id="qrColorLight" value="#ffffff" class="form-color">
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 rounded-md bg-yellow-50 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-700">
+                                <p class="text-sm text-yellow-800 dark:text-yellow-200" data-i18n="color_warning"></p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white" data-i18n="customize_center"></h3>
+                            <div class="space-y-4">
+                                <label class="custom-radio-group">
+                                    <input type="radio" name="centerOption" value="none" checked class="form-radio">
+                                    <span data-i18n="no_add"></span>
+                                </label>
+                                <div class="custom-radio-group">
+                                    <label class="flex items-center space-x-3 mb-3 cursor-pointer">
+                                        <input type="radio" name="centerOption" value="logo" class="form-radio">
+                                        <span data-i18n="add_logo"></span>
+                                    </label>
+                                    <input type="file" id="logoFile" class="form-file" disabled>
+                                    <p class="text-xs text-gray-500 mt-2" data-i18n="add_logo_hint"></p>
+                                    <div id="logoPreview" class="mt-3"></div>
+                                </div>
+                                <div class="custom-radio-group">
+                                    <label class="flex items-center space-x-3 mb-3 cursor-pointer">
+                                        <input type="radio" name="centerOption" value="text" class="form-radio">
+                                        <span data-i18n="add_text"></span>
+                                    </label>
+                                    <input type="text" id="centerText" data-i18n="enter_text" placeholder="Nhập text..." class="form-input" disabled>
+                                    <div class="flex items-center space-x-2 mt-2">
+                                        <label for="centerTextColor" class="text-sm" data-i18n="text_color"></label>
+                                        <input type="color" id="centerTextColor" value="#000000" class="form-color-small" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-            <div id="step3" class="hidden">
+                <div id="step3" class="hidden">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white" data-i18n="qr_preview"></h3>
+                            <div id="qrcode" class="qr-preview-box">
+                                <span class="text-gray-400" data-i18n="qr_preview_here"></span>
+                            </div>
+                        </div>
+                        <div id="downloadSection" class="flex-1 md:max-w-xs">
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white" data-i18n="export_format"></h3>
+                            <div class="space-y-3">
+                                <button onclick="downloadQR('png')" class="btn btn-primary w-full">
+                                    <i class="fas fa-file-image mr-2"></i> Download PNG
+                                </button>
+                                <button onclick="downloadQR('svg')" class="btn btn-secondary w-full">
+                                    <i class="fas fa-file-code mr-2"></i> Download SVG
+                                </button>
+                                <button onclick="downloadQR('pdf')" class="btn btn-secondary w-full">
+                                    <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                                </button>
+                            </div>
+                            <button onclick="testQR()" class="btn btn-secondary w-full mt-4">Test Generate</button>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-            <div class="flex justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                </div>
+            <div class="flex justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 px-2">
+                <button id="prevBtn" onclick="prevStep()" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span data-i18n="btn_prev"></span>
+                </button>
+                <button id="nextBtn" onclick="nextStep()" class="btn btn-primary">
+                    <span data-i18n="btn_next"></span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button id="generateBtn" class="btn btn-primary hidden" data-i18n="btn_generate"></button>
+            </div>
         </div>
     </div>
 
     <footer class="w-full py-6 px-4 mt-12 site-footer">
         <div class="max-w-5xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
             <p>&copy; 2025 PhuongDeveloper. All Rights Reserved.</p>
-            <p class="mt-1">Phát triển với ❤️. Mã nguồn mở trên <a href="https://github.com/PhuongDeveloper/qrcode" target="_blank" class="font-medium hover:text-indigo-500 transition">GitHub</a>.</p>
+            <p class="mt-1">Phát triển với ❤️. Mã nguồn mở trên <a href="https://github.com/PhuongDeveloper/qrcode" target="_blank" class="font-medium hover:text-teal-500 transition">GitHub</a>.</p>
         </div>
     </footer>
 
