@@ -295,3 +295,34 @@ body.no-icons .icon-fallback {
         max-height: 280px !important;
     }
 }
+/* ===== Footer Styles ===== */
+/* Thêm các kiểu này vào cuối tệp css/style.css */
+
+.site-footer {
+    /* Màu nền bán trong suốt để hòa hợp với gradient của body.
+      Bạn có thể đổi thành màu nền đục nếu muốn.
+    */
+    background-color: rgba(255, 255, 255, 0.3);
+    border-top: 1px solid var(--bg-light-to); /* Dùng biến màu bạn đã định nghĩa */
+    transition: all 0.3s ease;
+}
+
+.dark .site-footer {
+    /* Màu nền tối cho dark mode */
+    background-color: rgba(30, 41, 59, 0.3); /* #1e293b với 30% opacity */
+    border-top: 1px solid #334155; /* Màu viền tối */
+}
+
+/* Định kiểu cho link trong footer */
+.site-footer a {
+    color: #4f46e5; /* Tailwind 'indigo-600' */
+    font-weight: 500;
+}
+
+.dark .site-footer a {
+    color: #818cf8; /* Tailwind 'indigo-400' */
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
