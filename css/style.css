@@ -1,293 +1,447 @@
-/* QR Code Generator - Custom Styles */
+/* QR Code Generator - Giao diện mới (Chủ đề Teal) */
 
-/* CSS Variables */
+/* ============================================
+  CSS Variables (Biến màu)
+============================================
+*/
 :root {
-    --bg-light-from: #f8fafc;
-    --bg-light-via: #dbeafe;
-    --bg-light-to: #e0e7ff;
-    --bg-dark-from: #1e293b;
-    --bg-dark-via: #0f172a;
-    --bg-dark-to: #1e1b4b;
+    /* Màu chủ đạo */
+    --color-primary: #14b8a6; /* teal-500 */
+    --color-primary-hover: #0d9488; /* teal-600 */
+    --color-primary-light: #f0fdfa; /* teal-50 */
+    --color-primary-border: #99f6e4; /* teal-200 */
+
+    /* Nền sáng (Light Mode) */
+    --bg-light: #f8fafc; /* slate-50 */
+    --bg-card-light: #ffffff;
+    --text-light: #1e293b; /* slate-800 */
+    --text-muted-light: #64748b; /* slate-500 */
+    --border-light: #e2e8f0; /* slate-200 */
+    --input-bg-light: #f1f5f9; /* slate-100 */
+
+    /* Nền tối (Dark Mode) */
+    --bg-dark: #0f172a; /* slate-900 */
+    --bg-card-dark: #1e293b; /* slate-800 */
+    --text-dark: #e2e8f0; /* slate-200 */
+    --text-muted-dark: #94a3b8; /* slate-400 */
+    --border-dark: #334155; /* slate-700 */
+    --input-bg-dark: #334155; /* slate-700 */
 }
 
-/* Body Backgrounds */
+/* ============================================
+  Cài đặt cơ bản & Dark Mode
+============================================
+*/
 body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background 0.3s ease, color 0.3s ease;
-    background: linear-gradient(135deg, var(--bg-light-from) 0%, var(--bg-light-via) 50%, var(--bg-light-to) 100%) !important;
-    min-height: 100vh;
 }
 
 .dark body {
-    background: linear-gradient(135deg, var(--bg-dark-from) 0%, var(--bg-dark-via) 50%, var(--bg-dark-to) 100%) !important;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
-/* Light Mode - Default Styles */
-.card-bg {
-    background-color: #ffffff !important;
-    border-color: #e5e7eb !important;
+/* ============================================
+  Header & Tiêu đề
+============================================
+*/
+.main-title {
+    background: linear-gradient(to right, var(--color-primary), #06b6d4); /* teal-500 to cyan-500 */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-.input-bg,
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="tel"],
-input[type="file"],
-select,
-textarea {
-    background-color: #ffffff !important;
-    border-color: #d1d5db !important;
-    color: #111827 !important;
+.control-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    background-color: var(--bg-card-light);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted-light);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+.control-btn:hover {
+    border-color: var(--color-primary-border);
+    color: var(--color-primary);
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #6b7280 !important;
+.dark .control-btn {
+    background-color: var(--bg-card-dark);
+    border-color: var(--border-dark);
+    color: var(--text-muted-dark);
+}
+.dark .control-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
-/* Light mode labels and text */
-label {
-    color: #374151 !important;
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted-light);
+    transition: color 0.2s ease;
+}
+.github-link:hover {
+    color: var(--color-primary);
+}
+.dark .github-link {
+    color: var(--text-muted-dark);
+}
+.dark .github-link:hover {
+    color: var(--color-primary);
 }
 
-.text-gray-600 {
-    color: #4b5563 !important;
+/* ============================================
+  Card chính & Bố cục
+============================================
+*/
+.main-card {
+    background-color: var(--bg-card-light);
+    border-radius: 1.5rem; /* rounded-3xl */
+    border: 1px solid var(--border-light);
+    padding: 2rem;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+}
+.dark .main-card {
+    background-color: var(--bg-card-dark);
+    border-color: var(--border-dark);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
 }
 
-.text-gray-700 {
-    color: #374151 !important;
-}
-
-.text-gray-800 {
-    color: #1f2937 !important;
-}
-
-/* Dark Mode */
-.dark {
-    color-scheme: dark;
-    color: #e5e7eb;
-}
-
-.dark label {
-    color: #e5e7eb !important;
-}
-
-.dark .card-bg {
-    background-color: #1e293b !important;
-    border-color: #334155 !important;
-}
-
-.dark .input-bg {
-    background-color: #0f172a !important;
-    border-color: #475569 !important;
-    color: #e2e8f0 !important;
-}
-
-.dark .input-bg:hover,
-.dark .input-bg:focus {
-    background-color: #1e293b !important;
-    border-color: #6366f1 !important;
-}
-
-.dark input[type="text"],
-.dark input[type="email"],
-.dark input[type="url"],
-.dark input[type="tel"],
-.dark input[type="file"],
-.dark select,
-.dark textarea {
-    background-color: #0f172a !important;
-    border-color: #475569 !important;
-    color: #e2e8f0 !important;
-}
-
-.dark input::placeholder {
-    color: #64748b;
-}
-
-/* Text Colors - Dark Mode */
-.dark .text-gray-400 {
-    color: #9ca3af !important;
-}
-
-.dark .text-gray-500 {
-    color: #6b7280 !important;
-}
-
-.dark .text-gray-600 {
-    color: #cbd5e1 !important;
-}
-
-.dark .text-gray-700 {
-    color: #e2e8f0 !important;
-}
-
-.dark .text-gray-800 {
-    color: #f1f5f9 !important;
-}
-
-.dark .text-gray-900 {
-    color: #f8fafc !important;
-}
-
-/* Border Colors - Dark Mode */
-.dark .border-gray-100 {
-    border-color: #334155 !important;
-}
-
-.dark .border-gray-200 {
-    border-color: #475569 !important;
-}
-
-.dark .border-gray-300 {
-    border-color: #64748b !important;
-}
-
-.dark .border-gray-600 {
-    border-color: #475569 !important;
-}
-
-/* Background Colors - Dark Mode */
-.dark .bg-gray-50 {
-    background-color: #0f172a !important;
-}
-
-.dark .bg-gray-100 {
-    background-color: #1e293b !important;
-}
-
-.dark .bg-gray-200 {
-    background-color: #334155 !important;
-}
-
-/* Warning Box */
-.dark .bg-yellow-50 {
-    background-color: rgba(254, 243, 199, 0.1) !important;
-}
-
-.dark .text-yellow-800 {
-    color: #fef3c7 !important;
-}
-
-.dark .border-yellow-200 {
-    border-color: rgba(254, 243, 199, 0.3) !important;
-}
-
-.dark .border-yellow-800 {
-    border-color: rgba(254, 243, 199, 0.2) !important;
-}
-
-/* Hover States - Dark Mode */
-.dark .hover\:bg-gray-300:hover {
-    background-color: #475569 !important;
-}
-
-.dark .hover\:border-indigo-500:hover {
-    border-color: #6366f1 !important;
-}
-
-/* Navigation Buttons - Light mode overrides */
-.bg-gray-200 {
-    background-color: #e5e7eb !important;
-}
-
-.hover\:bg-gray-300:hover {
-    background-color: #d1d5db !important;
-}
-
-.dark .bg-gray-700 {
-    background-color: #374151 !important;
-}
-
-/* Step Wizard Tabs */
-.tab {
-    position: relative;
-    padding: 1rem 1.5rem;
+/* ============================================
+  Stepper (Thay cho Tab)
+============================================
+*/
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Khóa click ban đầu */
+    flex-basis: 100px;
+    text-align: center;
+}
+.step.active {
+    opacity: 1;
+    font-weight: 600;
+    pointer-events: auto; /* Mở khóa click cho tab đã active */
+}
+.step:not(.active):hover {
+    opacity: 0.7;
+}
+
+/* Mở khóa click cho các tab đã được truy cập (JS sẽ xử lý) */
+.step[style*="pointer-events: auto"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.step-circle {
+    width: 2.5rem; /* w-10 */
+    height: 2.5rem; /* h-10 */
+    border-radius: 9999px; /* rounded-full */
+    border: 2px solid var(--border-light);
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
+.dark .step-circle {
+    border-color: var(--border-dark);
+    background-color: var(--bg-dark);
+}
 
-.tab.active {
-    color: #6366f1;
+.step.active .step-circle {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--text-muted-light);
+}
+.dark .step-label {
+    color: var(--text-muted-dark);
+}
+.step.active .step-label {
+    color: var(--text-light);
+}
+.dark .step.active .step-label {
+    color: var(--text-dark);
+}
+
+.step-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--border-light);
+}
+.dark .step-line {
+    background-color: var(--border-dark);
+}
+
+/* ============================================
+  Thành phần Form (Input, Nút bấm)
+============================================
+*/
+.form-input, .form-select, .form-file {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    border: 1px solid var(--border-light);
+    background-color: var(--input-bg-light);
+    color: var(--text-light);
+    transition: all 0.2s ease;
+}
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: var(--bg-card-light);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+.dark .form-input, .dark .form-select, .dark .form-file {
+    border-color: var(--border-dark);
+    background-color: var(--input-bg-dark);
+    color: var(--text-dark);
+}
+.dark .form-input:focus, .dark .form-select:focus {
+    border-color: var(--color-primary);
+    background-color: var(--bg-card-dark);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.3); /* teal-500 with 30% opacity */
+}
+
+/* Input file */
+.form-file {
+    padding: 0.5rem;
+}
+.form-file::file-selector-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.form-file::file-selector-button:hover {
+    background-color: var(--color-primary-hover);
+}
+.dark .form-file::file-selector-button {
+    background-color: var(--color-primary);
+}
+.dark .form-file::file-selector-button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* Checkbox & Radio */
+.form-checkbox, .form-radio {
+    color: var(--color-primary);
+}
+.form-checkbox:focus, .form-radio:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+.dark .form-checkbox, .dark .form-radio {
+    color: var(--color-primary);
+    background-color: var(--input-bg-dark);
+}
+.dark .form-checkbox:focus, .dark .form-radio:focus {
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.3);
+}
+
+/* Nút bấm (Buttons) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem; /* rounded-xl */
     font-weight: 600;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.btn:disabled, .btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, #6366f1, #8b5cf6);
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 10px -2px rgba(20, 184, 166, 0.4);
+}
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 6px 12px -2px rgba(20, 184, 166, 0.5);
+    transform: translateY(-1px);
 }
 
-.tab:not(.active):hover {
-    background-color: rgba(99, 102, 241, 0.1);
+.btn-secondary {
+    background-color: var(--input-bg-light);
+    border-color: var(--border-light);
+    color: var(--text-light);
+}
+.btn-secondary:hover {
+    background-color: var(--bg-card-light);
+    border-color: var(--color-primary-border);
+    color: var(--color-primary);
+}
+.dark .btn-secondary {
+    background-color: var(--input-bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+.dark .btn-secondary:hover {
+    background-color: var(--bg-card-dark);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
-/* Data Type Cards */
+/* ============================================
+  Thành phần Cụ thể (Steps)
+============================================
+*/
+
+/* Step 1: Data Type Cards */
 .data-card {
     cursor: pointer;
     transition: all 0.2s ease;
-    background-color: #ffffff;
-    border-color: #e5e7eb;
+    padding: 1rem;
+    border-radius: 1rem; /* rounded-2xl */
+    border: 1px solid var(--border-light);
+    background-color: var(--bg-card-light);
+    text-align: center;
+    color: var(--text-muted-light);
 }
-
 .data-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-    border-color: #c7d2fe;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    border-color: var(--color-primary-border);
+    color: var(--color-primary);
 }
-
 .data-card.active-card {
-    border-color: #6366f1 !important;
-    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    border-color: var(--color-primary) !important;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
 }
-
 .dark .data-card {
-    background-color: #1e293b;
-    border-color: #475569;
+    border-color: var(--border-dark);
+    background-color: var(--bg-card-dark);
+    color: var(--text-muted-dark);
 }
-
 .dark .data-card:hover {
-    border-color: #6366f1;
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: 0 10px 25px rgba(20, 184, 166, 0.1);
 }
-
 .dark .data-card.active-card {
-    background: linear-gradient(135deg, #312e81 0%, #3730a3 100%);
-    border-color: #818cf8 !important;
+    background: rgba(20, 184, 166, 0.1); /* teal-500 10% opacity */
+    color: var(--color-primary);
 }
 
-/* Icon Fallback System */
-.icon-fallback {
-    display: none;
+/* Icon Fallback (Giữ nguyên) */
+.icon-fallback { display: none; }
+body.no-icons i { display: none !important; }
+body.no-icons .icon-fallback { display: inline !important; }
+
+/* Step 2: Customization */
+.color-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--input-bg-light);
+}
+.dark .color-option {
+    background-color: var(--input-bg-dark);
 }
 
-/* Show emoji fallback if Font Awesome fails to load */
-body.no-icons i {
-    display: none !important;
+.form-color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 6rem; /* w-24 */
+    height: 2.5rem; /* h-10 */
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+    overflow: hidden;
+}
+.dark .form-color {
+    border-color: var(--border-dark);
+}
+.form-color::-webkit-color-swatch {
+    border: none;
+    border-radius: 0.5rem;
+}
+.form-color::-moz-color-swatch {
+    border: none;
+    border-radius: 0.5rem;
+}
+.form-color-small {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
 }
 
-body.no-icons .icon-fallback {
-    display: inline !important;
+.custom-radio-group {
+    padding: 1rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    border: 2px solid var(--border-light);
+    transition: border-color 0.2s ease;
+}
+.dark .custom-radio-group {
+    border-color: var(--border-dark);
+}
+/* Tailwind 'has-[:checked]:border-teal-500' */
+.custom-radio-group:has(.form-radio:checked) {
+    border-color: var(--color-primary);
 }
 
-/* QR Code Responsive */
-#qrcode {
-    max-width: 100%;
+/* Step 3: Preview & Download */
+.qr-preview-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 2px dashed var(--border-light);
+    border-radius: 1rem; /* rounded-2xl */
+    min-height: 280px;
+    background-color: white; /* Luôn là nền trắng để xem QR */
+}
+.dark .qr-preview-box {
+    border-color: var(--border-dark);
 }
 
+/* Đảm bảo QR code hiển thị đúng (Giữ nguyên) */
+#qrcode { max-width: 100%; }
 #qrcode canvas,
 #qrcode img {
     max-width: 100% !important;
     height: auto !important;
     width: auto !important;
 }
-
-/* Mobile: smaller QR size */
 @media (max-width: 768px) {
     #qrcode canvas,
     #qrcode img {
@@ -295,34 +449,21 @@ body.no-icons .icon-fallback {
         max-height: 280px !important;
     }
 }
-/* ===== Footer Styles ===== */
-/* Thêm các kiểu này vào cuối tệp css/style.css */
 
+/* ============================================
+  Footer
+============================================
+*/
 .site-footer {
-    /* Màu nền bán trong suốt để hòa hợp với gradient của body.
-      Bạn có thể đổi thành màu nền đục nếu muốn.
-    */
-    background-color: rgba(255, 255, 255, 0.3);
-    border-top: 1px solid var(--bg-light-to); /* Dùng biến màu bạn đã định nghĩa */
-    transition: all 0.3s ease;
+    background-color: transparent;
+    border-top: 1px solid var(--border-light);
 }
-
 .dark .site-footer {
-    /* Màu nền tối cho dark mode */
-    background-color: rgba(30, 41, 59, 0.3); /* #1e293b với 30% opacity */
-    border-top: 1px solid #334155; /* Màu viền tối */
+    border-top: 1px solid var(--border-dark);
 }
-
-/* Định kiểu cho link trong footer */
 .site-footer a {
-    color: #4f46e5; /* Tailwind 'indigo-600' */
-    font-weight: 500;
+    color: var(--color-primary);
 }
-
-.dark .site-footer a {
-    color: #818cf8; /* Tailwind 'indigo-400' */
-}
-
 .site-footer a:hover {
     text-decoration: underline;
 }
