@@ -62,7 +62,7 @@ Tạo QR code cho nhiều mục đích khác nhau:
 
 ### 🌐 Sử dụng trực tiếp
 
-**Live Demo:** [https://j2teamnnl.github.io/qr-code-generator](https://j2teamnnl.github.io/qr-code-generator)
+**Live Demo:** [https://phuongdeveloper.github.io/qrcode]((https://phuongdeveloper.github.io/qrcode/)
 
 ## 📖 Hướng dẫn sử dụng
 
