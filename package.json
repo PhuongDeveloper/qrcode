@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/j2teamnnl/qr-code-generator.git"
+    "url": "https://github.com/PhuongDeveloper/qrcode.git"
   },
   "keywords": [
     "qr-code",
@@ -20,7 +20,7 @@
     "tailwindcss",
     "open-source"
   ],
-  "author": "j2teamnnl",
+  "author": "PhuongDev",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.57.0",
